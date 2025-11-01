@@ -1,5 +1,6 @@
 module "vpc" {
-    source = "../terraform-aws-vpc"
+    # source = "../terraform-aws-vpc"
+    source = "git::https://github.com/clouddevops98/terraform-aws-vpc.git?ref=main"
     # vpc_cidr = "10.0.0.0/16"
     # project_name = "roboshop"
     # environment = "dev"
@@ -11,13 +12,16 @@ module "vpc" {
     vpc_tags = var.vpc_tags
 
 
-    # Public
+    # Public subnets
     public_subnet_cidrs = var.public_subnet_cidrs
     
-    # Private
+    # Private subnets
     private_subnet_cidrs = var.private_subnet_cidrs
     
-    # database
+    # database subnets
     database_subnet_cidrs = var.database_subnet_cidrs
+
+    is_peering_required = true
 }
+
 
